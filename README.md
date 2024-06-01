@@ -1,3 +1,3 @@
 # API
 
-API for rafiandria23.tech and all apps.
+API for rafiandria23's apps.

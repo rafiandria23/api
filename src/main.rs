@@ -18,7 +18,7 @@ async fn main() -> Result<(), Error> {
 
     // Server Env
     let host = env::var("HOST").unwrap_or("0.0.0.0".to_string());
-    let port = env::var("PORT").unwrap_or("2000".to_string());
+    let port = env::var("PORT").unwrap_or("3000".to_string());
 
     // DB Env
     let db_url = env::var("DATABASE_URL").expect("DB_URL env must be set!");
@@ -34,6 +34,7 @@ async fn main() -> Result<(), Error> {
             .app_data(Data::new(pool.clone()))
             .wrap(middleware::Logger::default())
             .service(controllers::auth::setup())
+            .service(controllers::user::setup())
     })
     .bind((host, port.parse::<u16>().unwrap()))
     .unwrap()

@@ -1,43 +1,44 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize)]
-pub struct SignUpPayload {
+#[derive(Serialize, Deserialize)]
+pub struct SignUpBodyMessage {
     pub first_name: String,
     pub last_name: Option<String>,
     pub username: String,
     pub email: String,
-    pub phone_number: Option<String>,
+    pub phone: Option<String>,
     pub password: String,
 }
 
-#[derive(Deserialize)]
-pub struct UsernameSignInPayload {
+#[derive(Serialize, Deserialize)]
+pub struct UsernameSignInBodyMessage {
     pub username: String,
     pub password: String,
 }
 
-#[derive(Deserialize)]
-pub struct EmailSignInPayload {
+#[derive(Serialize, Deserialize)]
+pub struct EmailSignInBodyMessage {
     pub email: String,
     pub password: String,
 }
 
-#[derive(Deserialize)]
-pub struct UpdateUsernamePayload {
+#[derive(Serialize, Deserialize)]
+pub struct UpdateUsernameBodyMessage {
     pub username: String,
 }
 
-#[derive(Deserialize)]
-pub struct UpdateEmailPayload {
+#[derive(Serialize, Deserialize)]
+pub struct UpdateEmailBodyMessage {
     pub email: String,
 }
 
-#[derive(Deserialize)]
-pub struct UpdatePhoneNumberPayload {
-    pub phone_number: String,
+#[derive(Serialize, Deserialize)]
+pub struct UpdatePhoneBodyMessage {
+    pub phone: String,
 }
 
-#[derive(Deserialize)]
-pub struct UpdatePasswordPayload {
-    pub password: String,
+#[derive(Serialize, Deserialize)]
+pub struct UpdatePasswordBodyMessage {
+    pub old_password: String,
+    pub new_password: String,
 }

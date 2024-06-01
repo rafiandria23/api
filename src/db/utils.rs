@@ -6,7 +6,7 @@ use diesel::{
 pub fn get_pool(db_url: &str) -> Pool<ConnectionManager<PgConnection>> {
     let manager: ConnectionManager<PgConnection> = ConnectionManager::<PgConnection>::new(db_url);
 
-    Pool::builder()
+    return Pool::builder()
         .build(manager)
-        .expect("Error building DB pool!")
+        .expect("Error building DB pool!");
 }

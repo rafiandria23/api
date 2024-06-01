@@ -1,9 +1,8 @@
 use actix_web::{
-    get, patch, post,
+    delete, patch, post,
     web::{scope, Data, Json},
-    Responder, Scope,
+    Error as ActixError, Responder, Scope,
 };
-use std::io::Error;
 
 use crate::app::state::AppState;
 use crate::messages::auth::*;
@@ -11,57 +10,67 @@ use crate::messages::auth::*;
 #[post("/signup")]
 async fn sign_up(
     state: Data<AppState>,
-    body: Json<SignUpPayload>,
-) -> Result<impl Responder, Error> {
-    Ok(Json("Hello, world!"))
+    body: Json<SignUpBodyMessage>,
+) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
 }
 
 #[post("/signin/username")]
 async fn username_sign_in(
     state: Data<AppState>,
-    body: Json<UsernameSignInPayload>,
-) -> Result<impl Responder, Error> {
-    Ok(Json("Hello, world!"))
+    body: Json<UsernameSignInBodyMessage>,
+) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
 }
 
 #[post("/signin/email")]
 async fn email_sign_in(
     state: Data<AppState>,
-    body: Json<EmailSignInPayload>,
-) -> Result<impl Responder, Error> {
-    Ok(Json("Hello, world!"))
+    body: Json<EmailSignInBodyMessage>,
+) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
 }
 
 #[patch("/username")]
 async fn update_username(
     state: Data<AppState>,
-    body: Json<EmailSignInPayload>,
-) -> Result<impl Responder, Error> {
-    Ok(Json("Hello, world!"))
+    body: Json<EmailSignInBodyMessage>,
+) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
 }
 
 #[patch("/email")]
 async fn update_email(
     state: Data<AppState>,
-    body: Json<EmailSignInPayload>,
-) -> Result<impl Responder, Error> {
-    Ok(Json("Hello, world!"))
+    body: Json<EmailSignInBodyMessage>,
+) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
 }
 
 #[patch("/phone-number")]
-async fn update_phone_number(
+async fn update_phone(
     state: Data<AppState>,
-    body: Json<UpdatePhoneNumberPayload>,
-) -> Result<impl Responder, Error> {
-    Ok(Json("Hello, world!"))
+    body: Json<UpdatePhoneBodyMessage>,
+) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
 }
 
 #[patch("/password")]
 async fn update_password(
     state: Data<AppState>,
-    body: Json<UpdatePasswordPayload>,
-) -> Result<impl Responder, Error> {
-    Ok(Json("Hello, world!"))
+    body: Json<UpdatePasswordBodyMessage>,
+) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
+}
+
+#[delete("/deactivate")]
+async fn deactivate(state: Data<AppState>) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
+}
+
+#[delete("/")]
+async fn delete(state: Data<AppState>) -> Result<impl Responder, ActixError> {
+    Ok("Hello world!")
 }
 
 pub fn setup() -> Scope {
@@ -71,6 +80,8 @@ pub fn setup() -> Scope {
         .service(email_sign_in)
         .service(update_username)
         .service(update_email)
-        .service(update_phone_number)
+        .service(update_phone)
         .service(update_password)
+        .service(deactivate)
+        .service(delete)
 }

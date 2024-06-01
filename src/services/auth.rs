@@ -1,14 +1,17 @@
+use actix_web::web::Json;
 
-pub async fn sign_up() {}
+use crate::messages::auth::*;
 
-pub async fn username_sign_in() {}
+pub async fn sign_up(body: Json<SignUpBodyMessage>) {}
 
-pub async fn email_sign_in() {}
+pub async fn username_sign_in(body: Json<UsernameSignInBodyMessage>) {}
 
-pub async fn update_username() {}
+pub async fn email_sign_in(body: Json<EmailSignInBodyMessage>) {}
 
-pub async fn update_email() {}
+pub async fn update_username(user_id: String, body: Json<UpdateUsernameBodyMessage>) {}
 
-pub async fn update_phone_number() {}
+pub async fn update_email(user_id: String, body: Json<UpdateEmailBodyMessage>) {}
 
-pub async fn update_password() {}
+pub async fn update_phone(user_id: String, body: Json<UpdatePhoneBodyMessage>) {}
+
+pub async fn update_password(user_id: String, body: Json<UpdatePasswordBodyMessage>) {}
